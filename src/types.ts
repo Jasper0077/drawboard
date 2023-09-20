@@ -1,4 +1,5 @@
-import { THEME } from "./constants";
+import { SHAPES, THEME } from "./constants";
+import { Point as RoughPoint } from "roughjs/bin/geometry";
 
 export type NormalizedZoomValue = number & { _brand: "normalizedZoom" };
 
@@ -7,12 +8,18 @@ export type Zoom = Readonly<{
   value: NormalizedZoomValue;
 }>;
 
+export type Point = Readonly<RoughPoint>;
+
 export type AppState = {
   showWelcomeScreen: boolean;
   isLoading: boolean;
   errorMessage: React.ReactNode;
   viewModeEnabled: boolean;
   theme: Theme;
+  activeTool: {
+    type: typeof SHAPES[number],
+    customType: null;
+  }
 
   /** Basics */
   zoom: Zoom;
