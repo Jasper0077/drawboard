@@ -8,7 +8,7 @@ type Opts = {
 
 export const createIcon = (
   d: string | React.ReactNode,
-  opts: number | Opts = 512,
+  opts: number | Opts = 512
 ) => {
   const {
     width = 512,
@@ -38,7 +38,7 @@ export const SelectionIcon = createIcon(
     <path d="M6 6l4.153 11.793a0.365 .365 0 0 0 .331 .207a0.366 .366 0 0 0 .332 -.207l2.184 -4.793l4.787 -1.994a0.355 .355 0 0 0 .213 -.323a0.355 .355 0 0 0 -.213 -.323l-11.787 -4.36z" />
     <path d="M13.5 13.5l4.5 4.5" />
   </g>,
-  { fill: "none", width: 22, height: 22, strokeWidth: 1.25 },
+  { fill: "none", width: 22, height: 22, strokeWidth: 1.25 }
 );
 
 // tabler-icons: square

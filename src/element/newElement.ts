@@ -40,14 +40,14 @@ const _newElementBase = <T extends Element>(
     backgroundColor,
     strokeWidth,
     roughness,
-    opacity,
-  }
+    opacity
+  };
 
   return element;
-}
+};
 
 export const newElement = (
   opts: {
     type: GenericElement["type"];
-  } & ElementConstructorOpts,
+  } & ElementConstructorOpts
 ): GenericElement => _newElementBase<GenericElement>(opts.type, opts);

@@ -4,7 +4,7 @@ import {
   DiamondElement,
   Element,
   FreeDrawElement,
-  SelectionElement,
+  SelectionElement
 } from "../element/types";
 import { elementWithCanvasCache } from "../renderer/renderElement";
 import { ElementShape, ElementShapes } from "./types";
@@ -20,7 +20,7 @@ export class ShapeCache {
    */
   public static get = <T extends Element>(element: T) => {
     return ShapeCache.cache.get(
-      element,
+      element
     ) as T["type"] extends keyof ElementShapes
       ? ElementShapes[T["type"]] | undefined
       : ElementShape | undefined;
@@ -30,11 +30,10 @@ export class ShapeCache {
     element: T,
     shape: T["type"] extends keyof ElementShapes
       ? ElementShapes[T["type"]]
-      : Drawable,
+      : Drawable
   ) => ShapeCache.cache.set(element, shape);
 
-  public static delete = (element: Element) =>
-    ShapeCache.cache.delete(element);
+  public static delete = (element: Element) => ShapeCache.cache.delete(element);
 
   public static destroy = () => {
     ShapeCache.cache = new WeakMap();
@@ -45,10 +44,13 @@ export class ShapeCache {
    * returns cached shape.
    */
   public static generateElementShape = <
-    T extends Exclude<Element, SelectionElement | FreeDrawElement | DiamondElement>,
+    T extends Exclude<
+      Element,
+      SelectionElement | FreeDrawElement | DiamondElement
+    >
   >(
     element: T,
-    isExporting = false,
+    isExporting = false
   ) => {
     // when exporting, always regenerated to guarantee the latest shape
     const cachedShape = isExporting ? undefined : ShapeCache.get(element);

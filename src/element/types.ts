@@ -1,5 +1,7 @@
 import { Point } from "../types";
 
+export type PointerType = "mouse" | "pen" | "touch";
+
 type _BaseElement = Readonly<{
   id: string;
   x: number;
@@ -30,10 +32,11 @@ export type EllipseElement = _BaseElement & {
   type: "ellipse";
 };
 
-export type FreeDrawElement = _BaseElement & Readonly<{
-  type: "freedraw";
-  points: readonly Point[];
-}>;
+export type FreeDrawElement = _BaseElement &
+  Readonly<{
+    type: "freedraw";
+    points: readonly Point[];
+  }>;
 
 export type LinearElement = _BaseElement &
   Readonly<{
@@ -41,6 +44,10 @@ export type LinearElement = _BaseElement &
     points: readonly Point[];
   }>;
 
-export type GenericElement = SelectionElement | RectangleElement | DiamondElement | EllipseElement;
+export type GenericElement =
+  | SelectionElement
+  | RectangleElement
+  | DiamondElement
+  | EllipseElement;
 
 export type Element = GenericElement | FreeDrawElement | LinearElement;

@@ -17,9 +17,9 @@ export type AppState = {
   viewModeEnabled: boolean;
   theme: Theme;
   activeTool: {
-    type: typeof SHAPES[number],
+    type: (typeof SHAPES)[number]["value"];
     customType: null;
-  }
+  };
 
   /** Basics */
   zoom: Zoom;

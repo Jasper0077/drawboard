@@ -1,26 +1,28 @@
 import { RoughGenerator } from "roughjs/bin/generator";
-import { DiamondElement, Element, FreeDrawElement, SelectionElement } from "../element/types";
+import {
+  DiamondElement,
+  Element,
+  FreeDrawElement,
+  SelectionElement
+} from "../element/types";
 import { Drawable } from "roughjs/bin/core";
 import { ElementShapes } from "./types";
 import { assertNever } from "../utils";
 
-
 // TODO: implement freedraw and diamond
 export const generateElementShape = (
-  element: Exclude<Element, SelectionElement | FreeDrawElement | DiamondElement>,
+  element: Exclude<
+    Element,
+    SelectionElement | FreeDrawElement | DiamondElement
+  >,
   generator: RoughGenerator
 ): Drawable | Drawable[] | null => {
   switch (element.type) {
     case "rectangle": {
-      let shape: ElementShapes[typeof element["type"]];
+      let shape: ElementShapes[(typeof element)["type"]];
       // this is for rendering the stroke/bg of the embeddable, especially
       // when the src url is not set
-      shape = generator.rectangle(
-        0,
-        0,
-        element.width,
-        element.height
-      );
+      shape = generator.rectangle(0, 0, element.width, element.height);
       return shape;
     }
     case "ellipse": {
@@ -28,7 +30,8 @@ export const generateElementShape = (
         element.width / 2,
         element.height / 2,
         element.width,
-        element.height);
+        element.height
+      );
       return shape;
     }
     case "line":
@@ -52,7 +55,7 @@ export const generateElementShape = (
     default: {
       assertNever(
         element,
-        `generateElementShape(): Unimplemented type ${(element as any)?.type}`,
+        `generateElementShape(): Unimplemented type ${(element as any)?.type}`
       );
       return null;
     }

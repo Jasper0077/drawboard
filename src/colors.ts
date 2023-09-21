@@ -19,7 +19,7 @@ export const getSpecificColorShades = (
     ColorPickerColor,
     "transparent" | "white" | "black" | "bronze"
   >,
-  indexArr: Readonly<ColorShadesIndexes>,
+  indexArr: Readonly<ColorShadesIndexes>
 ) => {
   return indexArr.map((index) => oc[color][index]) as any as ColorTuple;
 };
@@ -41,5 +41,5 @@ export const COLOR_PALETTE = {
   yellow: getSpecificColorShades("yellow", ELEMENTS_PALETTE_SHADE_INDEXES),
   orange: getSpecificColorShades("orange", ELEMENTS_PALETTE_SHADE_INDEXES),
   // radix bronze shades 3,5,7,9,11
-  bronze: ["#f8f1ee", "#eaddd7", "#d2bab0", "#a18072", "#846358"],
+  bronze: ["#f8f1ee", "#eaddd7", "#d2bab0", "#a18072", "#846358"]
 } as ColorPalette;

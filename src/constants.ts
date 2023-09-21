@@ -1,5 +1,13 @@
 import { COLOR_PALETTE } from "./colors";
-import { SelectionIcon, RectangleIcon, DiamondIcon, EllipseIcon, ArrowIcon, LineIcon, FreedrawIcon } from "./components/icons";
+import {
+  SelectionIcon,
+  RectangleIcon,
+  DiamondIcon,
+  EllipseIcon,
+  ArrowIcon,
+  LineIcon,
+  FreedrawIcon
+} from "./components/icons";
 import { Element } from "./element/types";
 import { KEYS } from "./keys";
 
@@ -16,51 +24,51 @@ export const SHAPES = [
     value: "selection",
     key: KEYS.V,
     numericKey: KEYS["1"],
-    fillable: true,
+    fillable: true
   },
   {
     icon: RectangleIcon,
     value: "rectangle",
     key: KEYS.R,
     numericKey: KEYS["2"],
-    fillable: true,
+    fillable: true
   },
   {
     icon: DiamondIcon,
     value: "diamond",
     key: KEYS.D,
     numericKey: KEYS["3"],
-    fillable: true,
+    fillable: true
   },
   {
     icon: EllipseIcon,
     value: "ellipse",
     key: KEYS.O,
     numericKey: KEYS["4"],
-    fillable: true,
+    fillable: true
   },
   {
     icon: ArrowIcon,
     value: "arrow",
     key: KEYS.A,
     numericKey: KEYS["5"],
-    fillable: true,
+    fillable: true
   },
   {
     icon: LineIcon,
     value: "line",
     key: KEYS.L,
     numericKey: KEYS["6"],
-    fillable: true,
+    fillable: true
   },
   {
     icon: FreedrawIcon,
     value: "freedraw",
     key: [KEYS.P, KEYS.X],
     numericKey: KEYS["7"],
-    fillable: false,
-  },
-]
+    fillable: false
+  }
+];
 
 export const DEFAULT_ELEMENT_PROPS: {
   strokeColor: Element["strokeColor"];
@@ -73,5 +81,5 @@ export const DEFAULT_ELEMENT_PROPS: {
   backgroundColor: COLOR_PALETTE.transparent,
   strokeWidth: 1,
   roughness: 1,
-  opacity: 100,
+  opacity: 100
 };

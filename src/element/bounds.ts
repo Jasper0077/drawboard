@@ -11,18 +11,14 @@ const rg = new RoughGenerator();
 type MaybeQuadraticSolution = [number | null, number | null] | false;
 export type Bounds = readonly [x1: number, y1: number, x2: number, y2: number];
 
-
 export const getElementAbsoluteCoords = (
   element: Element,
-  includeBoundText: boolean = false,
+  includeBoundText: boolean = false
 ): [number, number, number, number, number, number] => {
   if (isFreeDrawElement(element)) {
     return getFreeDrawElementAbsoluteCoords(element);
   } else if (isLinearElement(element)) {
-    return getLinearElementAbsoluteCoords(
-      element,
-      includeBoundText,
-    );
+    return getLinearElementAbsoluteCoords(element, includeBoundText);
   }
   return [
     element.x,
@@ -30,12 +26,12 @@ export const getElementAbsoluteCoords = (
     element.x + element.width,
     element.y + element.height,
     element.x + element.width / 2,
-    element.y + element.height / 2,
+    element.y + element.height / 2
   ];
 };
 
 const getBoundsFromPoints = (
-  points: FreeDrawElement["points"],
+  points: FreeDrawElement["points"]
 ): [number, number, number, number] => {
   let minX = Infinity;
   let minY = Infinity;
@@ -65,7 +61,7 @@ const getCubicBezierCurveBound = (
   p0: Point,
   p1: Point,
   p2: Point,
-  p3: Point,
+  p3: Point
 ): Bounds => {
   const solX = solveQuadratic(p0[0], p1[0], p2[0], p3[0]);
   const solY = solveQuadratic(p0[1], p1[1], p2[1], p3[1]);
@@ -91,7 +87,7 @@ const getCubicBezierCurveBound = (
 
 export const getMinMaxXYFromCurvePathOps = (
   ops: Op[],
-  transformXY?: (x: number, y: number) => [number, number],
+  transformXY?: (x: number, y: number) => [number, number]
 ): [number, number, number, number] => {
   let currentP: Point = [0, 0];
 
@@ -120,7 +116,7 @@ export const getMinMaxXYFromCurvePathOps = (
           p0,
           p1,
           p2,
-          p3,
+          p3
         );
 
         limits.minX = Math.min(limits.minX, minX);
@@ -135,14 +131,14 @@ export const getMinMaxXYFromCurvePathOps = (
       }
       return limits;
     },
-    { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity },
+    { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity }
   );
   return [minX, minY, maxX, maxY];
 };
 
 export const getLinearElementAbsoluteCoords = (
   element: LinearElement,
-  includeBoundText: boolean = false,
+  includeBoundText: boolean = false
 ): [number, number, number, number, number, number] => {
   let coords: [number, number, number, number, number, number];
   let x1;
@@ -161,7 +157,7 @@ export const getLinearElementAbsoluteCoords = (
 
         return limits;
       },
-      { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity },
+      { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity }
     );
     x1 = minX + element.x;
     y1 = minY + element.y;
@@ -190,7 +186,7 @@ export const getLinearElementAbsoluteCoords = (
 };
 
 const getFreeDrawElementAbsoluteCoords = (
-  element: FreeDrawElement,
+  element: FreeDrawElement
 ): [number, number, number, number, number, number] => {
   const [minX, minY, maxX, maxY] = getBoundsFromPoints(element.points);
   const x1 = minX + element.x;
@@ -205,7 +201,7 @@ const getBezierValueForT = (
   p0: number,
   p1: number,
   p2: number,
-  p3: number,
+  p3: number
 ) => {
   const oneMinusT = 1 - t;
   return (
@@ -220,7 +216,7 @@ const solveQuadratic = (
   p0: number,
   p1: number,
   p2: number,
-  p3: number,
+  p3: number
 ): MaybeQuadraticSolution => {
   const i = p1 - p0;
   const j = p2 - p1;

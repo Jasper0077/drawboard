@@ -12,7 +12,7 @@ export const distance2d = (x1: number, y1: number, x2: number, y2: number) => {
 export const isPathALoop = (
   points: LinearElement["points"],
   /** supply if you want the loop detection to account for current zoom */
-  zoomValue: Zoom["value"] = 1 as NormalizedZoomValue,
+  zoomValue: Zoom["value"] = 1 as NormalizedZoomValue
 ): boolean => {
   if (points.length >= 3) {
     const [first, last] = [points[0], points[points.length - 1]];

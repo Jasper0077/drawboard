@@ -24,7 +24,7 @@ const getCanvasPadding = (element: Element) =>
 
 const cappedElementCanvasSize = (
   element: Element,
-  zoom: Zoom,
+  zoom: Zoom
 ): {
   width: number;
   height: number;
@@ -113,7 +113,7 @@ const generateElementCanvas = (
   context.translate(padding * scale, padding * scale);
   context.scale(
     window.devicePixelRatio * scale,
-    window.devicePixelRatio * scale,
+    window.devicePixelRatio * scale
   );
 
   const rc = rough.canvas(canvas);
@@ -130,15 +130,14 @@ const generateElementCanvas = (
     canvasOffsetX,
     canvasOffsetY,
     boundTextElementVersion: null,
-    containingFrameOpacity: 100,
+    containingFrameOpacity: 100
   };
-}
+};
 
 export const pathsCache = new WeakMap<FreeDrawElement, Path2D>([]);
 export function getFreeDrawPath2D(element: FreeDrawElement) {
   return pathsCache.get(element);
 }
-
 
 const drawElementOnCanvas = (
   element: Element,
@@ -189,7 +188,4 @@ const drawElementOnCanvas = (
   context.globalAlpha = 1;
 };
 
-export const elementWithCanvasCache = new WeakMap<
-  Element,
-  ElementWithCanvas
->();
+export const elementWithCanvasCache = new WeakMap<Element, ElementWithCanvas>();
