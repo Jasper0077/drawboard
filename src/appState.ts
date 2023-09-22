@@ -1,4 +1,4 @@
-import { THEME } from "./constants";
+import { DEFAULT_ELEMENT_PROPS, THEME } from "./constants";
 import { AppState, NormalizedZoomValue } from "./types";
 
 export const getDefaultAppState = (): Omit<
@@ -12,6 +12,10 @@ export const getDefaultAppState = (): Omit<
   theme: THEME.LIGHT,
   zoom: {
     value: 1 as NormalizedZoomValue
+  },
+  activeTool: {
+    type: "selection",
+    customType: null
   },
   scrollX: 0,
   scrollY: 0
