@@ -4,6 +4,10 @@ import Stack from "./Stack";
 import { Section } from "./Section";
 import { AppState } from "../types";
 import { ShapesSwitcher } from "./Actions";
+import { Island } from "./Island";
+
+import "./LayerUI.scss";
+import "./Toolbar.scss";
 
 export interface LayerUIProps {
   interactiveCanvas: HTMLCanvasElement;
@@ -25,15 +29,17 @@ const LayerUI: React.FC<LayerUIProps> = ({
           <Stack.Col gap={6} className={clsx("App-menu_top__left")}>
             {/** TODO */}
           </Stack.Col>
-          <Section heading={"shapes"}>
+          <Section heading={"shapes"} className="shapes-section">
             <Stack.Col gap={4} align="start">
               <Stack.Row>
-                <ShapesSwitcher
-                  appState={appState}
-                  interactiveCanvas={interactiveCanvas}
-                  activeTool={appState.activeTool}
-                  setAppState={setAppState}
-                />
+                <Island padding={1} className={clsx("App-toolbar")}>
+                  <ShapesSwitcher
+                    appState={appState}
+                    interactiveCanvas={interactiveCanvas}
+                    activeTool={appState.activeTool}
+                    setAppState={setAppState}
+                  />
+                </Island>
               </Stack.Row>
             </Stack.Col>
           </Section>
@@ -43,7 +49,7 @@ const LayerUI: React.FC<LayerUIProps> = ({
   };
   return (
     <>
-      <div className={clsx("layer-ui_wrapper")}>{renderFixedContainer()}</div>
+      <div className={clsx("layer-ui__wrapper")}>{renderFixedContainer()}</div>
     </>
   );
 };
