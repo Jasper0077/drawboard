@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import "./Stack.scss";
 
 export interface StackProps {
   children: React.ReactNode;
