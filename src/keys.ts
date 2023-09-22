@@ -1,4 +1,4 @@
-import { isDarwin } from "./constants";
+// import { isDarwin } from "./constants";
 
 export const KEYS = {
   ARROW_DOWN: "ArrowDown",
@@ -9,7 +9,7 @@ export const KEYS = {
   PAGE_DOWN: "PageDown",
   BACKSPACE: "Backspace",
   ALT: "Alt",
-  CTRL_OR_CMD: isDarwin ? "metaKey" : "ctrlKey",
+  // CTRL_OR_CMD: isDarwin ? "metaKey" : "ctrlKey",
   DELETE: "Delete",
   ENTER: "Enter",
   ESCAPE: "Escape",
