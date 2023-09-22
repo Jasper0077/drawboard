@@ -1,3 +1,5 @@
+@import "../css/variables.module";
+
 .drawboard {
   .FixedContainer {
     position: absolute;
@@ -9,8 +11,8 @@
   }
 
   .FixedContainer_side_top {
-    left: var(--editor-container-padding);
-    right: var(--editor-container-padding);
+    left: 50vh;
+    right: 50vh;
     top: var(--editor-container-padding);
     bottom: var(--editor-container-padding);
     z-index: 2;
