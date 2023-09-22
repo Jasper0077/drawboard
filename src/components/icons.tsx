@@ -11,7 +11,7 @@ export const createIcon = (
   opts: number | Opts = 512
 ) => {
   const {
-    width = 512,
+    width = 22,
     height = width,
     mirror,
     style,
@@ -25,12 +25,24 @@ export const createIcon = (
       viewBox={`0 0 ${width} ${height}`}
       className={clsx({ "rtl-mirror": mirror })}
       style={style}
+      width={width}
+      height={height}
       {...rest}
     >
       {typeof d === "string" ? <path fill="currentColor" d={d} /> : d}
     </svg>
   );
 };
+
+const tablerIconProps: Opts = {
+  width: 24,
+  height: 24,
+  fill: "none",
+  strokeWidth: 2,
+  stroke: "currentColor",
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+} as const;
 
 export const SelectionIcon = createIcon(
   <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
@@ -46,7 +58,8 @@ export const RectangleIcon = createIcon(
   <g strokeWidth="1.5">
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
     <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-  </g>
+  </g>,
+  tablerIconProps
 );
 
 // tabler-icons: square-rotated
@@ -54,7 +67,8 @@ export const DiamondIcon = createIcon(
   <g strokeWidth="1.5">
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
     <path d="M10.5 20.4l-6.9 -6.9c-.781 -.781 -.781 -2.219 0 -3l6.9 -6.9c.781 -.781 2.219 -.781 3 0l6.9 6.9c.781 .781 .781 2.219 0 3l-6.9 6.9c-.781 .781 -2.219 .781 -3 0z" />
-  </g>
+  </g>,
+  tablerIconProps
 );
 
 // tabler-icons: circle
@@ -62,7 +76,8 @@ export const EllipseIcon = createIcon(
   <g strokeWidth="1.5">
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
     <circle cx="12" cy="12" r="9"></circle>
-  </g>
+  </g>,
+  tablerIconProps
 );
 
 // tabler-icons: arrow-narrow-right
@@ -72,12 +87,14 @@ export const ArrowIcon = createIcon(
     <line x1="5" y1="12" x2="19" y2="12" />
     <line x1="15" y1="16" x2="19" y2="12" />
     <line x1="15" y1="8" x2="19" y2="12" />
-  </g>
+  </g>,
+  tablerIconProps
 );
 
 // custom?
 export const LineIcon = createIcon(
-  <path d="M4.167 10h11.666" strokeWidth="1.5" />
+  <path d="M4.167 10h11.666" strokeWidth="1.5" />,
+  tablerIconProps
 );
 
 export const PenModeIcon = createIcon(
@@ -86,7 +103,8 @@ export const PenModeIcon = createIcon(
     <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z"></path>
     <path d="M16 7h4"></path>
     <path d="M18 19h-13a2 2 0 1 1 0 -4h4a2 2 0 1 0 0 -4h-3"></path>
-  </g>
+  </g>,
+  tablerIconProps
 );
 
 // modified tabler-icons: pencil
@@ -97,5 +115,6 @@ export const FreedrawIcon = createIcon(
       d="m7.643 15.69 7.774-7.773a2.357 2.357 0 1 0-3.334-3.334L4.31 12.357a3.333 3.333 0 0 0-.977 2.357v1.953h1.953c.884 0 1.732-.352 2.357-.977Z"
     />
     <path d="m11.25 5.417 3.333 3.333" />
-  </g>
+  </g>,
+  tablerIconProps
 );
