@@ -4,6 +4,7 @@ import React from "react";
 import { AbortError } from "../errors";
 import clsx from "clsx";
 import Spinner from "./Spinner";
+import "./ToolIcon.scss";
 
 export type ToolButtonSize = "small" | "medium";
 type _ToolButtonBaseProps = {
@@ -86,6 +87,10 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
     []
   );
 
+  React.useEffect(() => {
+    console.log("debug ToolButton", props);
+  }, [props]);
+
   const lastPointerTypeRef = React.useRef<PointerType | null>(null);
   if (
     props.type === "button" ||
@@ -102,7 +107,7 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
           sizeCn,
           props.className,
           props.visible && !props.hidden
-            ? "ToolIcon_tupe_button--show"
+            ? "ToolIcon_type_button--show"
             : "ToolIcon_type_button--hide",
           {
             ToolIcon: !props.hidden,
@@ -140,4 +145,41 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
       </button>
     );
   }
+
+  return (
+    <label
+      className={clsx("ToolIcon", props.className)}
+      title={props.title}
+      onPointerDown={(event) => {
+        lastPointerTypeRef.current = event.pointerType || null;
+        props.onPointerDown?.({ pointerType: event.pointerType || null });
+      }}
+      onPointerUp={() => {
+        requestAnimationFrame(() => {
+          lastPointerTypeRef.current = null;
+        });
+      }}
+    >
+      <input
+        className={`ToolIcon_type_radio ${sizeCn}`}
+        type="radio"
+        name={props.name}
+        aria-label={props["aria-label"]}
+        aria-keyshortcuts={props["aria-keyshortcuts"]}
+        data-testid={props["data-testid"]}
+        id={`${nanoid()}-${props.id}`}
+        onChange={() => {
+          props.onChange?.({ pointerType: lastPointerTypeRef.current });
+        }}
+        checked={props.checked}
+        ref={innerRef}
+      />
+      <div className="ToolIcon__icon">
+        {props.icon}
+        {props.keyBindingLabel && (
+          <span className="ToolIcon__keybinding">{props.keyBindingLabel}</span>
+        )}
+      </div>
+    </label>
+  );
 });
